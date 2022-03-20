@@ -16,7 +16,7 @@
     <section class="character-comparison">
       <h2 class="heading center">Choose your characters</h2>
       <section class="character-choice">
-        <select name="character_one" id="character_one">
+        <select name="character-one" id="character-one">
 					<option value="none" selected disabled hidden>Select a character</option>
 					<option value="Luke Skywalker">Luke Skywalker</option>
 					<option value="Chewbacca">Chewbacca</option>
@@ -29,7 +29,7 @@
 				</select>
       </section>
       <section class="character-choice">
-        <select name="character_one" id="character_one">
+        <select name="character-two" id="character-two">
 					<option value="none" selected disabled hidden>Select a character</option>
 					<option value="Luke Skywalker">Luke Skywalker</option>
 					<option value="Chewbacca">Chewbacca</option>
@@ -41,7 +41,41 @@
 					<option value="Leia Organa">Leia Organa</option>
 				</select>
       </section>
+      <div class="btn-wrap">
+        <button class="btn info-btn">Get information</button>
+      </div>
+      <section class="characters-info">
+        <div class="char-1-wrapper">
+          <section class="char-image">
+            <img src="images/Unknown.jpg" alt="image of chosen character">
+          </section>
+          <section class="char-summary" style="display:none">
+            <h3 class="char-name"></h3>
+            <div class="char-prop-btns">
+              <button class="btn gender">Gender</button>
+              <button class="btn hair">Hair Color</button>
+              <button class="btn height">Height</button>
+              <button class="btn weight">Weight</button>
+            </div>
+          </section>
+        </div>
+        <div class="char-2-wrapper">
+          <section class="char-image">
+            <img src="images/Unknown.jpg" alt="image of chosen character">
+          </section>
+          <section class="char-summary" style="display:none">
+            <h3 class="char-name"></h3>
+            <div class="char-prop-btns">
+              <button class="btn gender">Gender</button>
+              <button class="btn hair">Hair Color</button>
+              <button class="btn height">Height</button>
+              <button class="btn weight">Weight</button>
+            </div>
+          </section>
+        </div>
+      </section>
     </section>
   </main>
+  <script src="scripts/main.js"></script>
 </body>
 </html>

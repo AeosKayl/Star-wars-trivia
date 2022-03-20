@@ -1,3 +1,11 @@
 // *{
 //   background-color: gold;
 // }
+body{
+  background: url('../images/BG.jpg') no-repeat center center fixed;
+  // background-repeat: no-repeat;
+  // background-size: auto;
+  background-size: cover;
+  height: 100%;
+  overflow: hidden;
+}
