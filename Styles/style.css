@@ -1,7 +1,49 @@
 body {
-  background: url("../images/BG.jpg") no-repeat center center fixed;
   background-size: cover;
   height: 100%;
   overflow: hidden;
+}
+
+body header {
+  width: 100%;
+  height: 20%;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
+
+body header .heading {
+  color: #e44e20;
+  text-align: center;
+  width: 100%;
+}
+
+body header .container {
+  width: 100%;
+  height: 20%;
+}
+
+body header .container .logo-wrapper {
+  width: 100%;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+}
+
+body header .container .logo-wrapper img {
+  width: 250px;
 }
 /*# sourceMappingURL=style.css.map */
