@@ -1,7 +1,7 @@
 body {
+  -webkit-box-sizing: border-box;
+          box-sizing: border-box;
   background-size: cover;
-  height: 100%;
-  overflow: hidden;
 }
 
 body header {
@@ -45,5 +45,99 @@ body header .container .logo-wrapper {
 
 body header .container .logo-wrapper img {
   width: 250px;
+}
+
+body main {
+  width: 100%;
+  height: auto;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: row;
+          flex-direction: row;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+}
+
+body main img {
+  max-width: 100%;
+}
+
+body main .character-comparison .heading.center {
+  text-align: center;
+}
+
+body main .character-comparison .selections {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -ms-flex-pack: distribute;
+      justify-content: space-around;
+}
+
+body main .character-comparison .selections .character-choice {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -ms-flex-pack: distribute;
+      justify-content: space-around;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
+
+body main .character-comparison .selections .character-choice select {
+  margin: 20px 10px;
+  padding: 0.844rem 1rem;
+}
+
+body main .character-comparison .btn-wrap {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  padding: 10px;
+  margin-bottom: 10px;
+}
+
+body main .character-comparison .btn-wrap .info-btn {
+  padding: 10px;
+  font-size: 1.2rem;
+}
+
+body main .character-comparison .characters-info {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  width: 100%;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
+
+body main .character-comparison .characters-info .char-prop-btns {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+}
+
+body main .character-comparison .characters-info .char-prop-btns .btn {
+  padding: 10px;
+}
+
+body main .character-comparison .characters-info section {
+  margin: 20px;
 }
 /*# sourceMappingURL=style.css.map */

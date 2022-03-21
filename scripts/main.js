@@ -1,8 +1,9 @@
 console.log("Hello Boy!");
+import { Characters } from "../scripts/chars.js";
 import { fetchCharacters } from "../scripts/fetchdata.js";
 
 
-//testing fetch
+//*testing fetch
 let fetchData = async (url) =>{
   let response = await fetch(url);
   let json = await response.json();
