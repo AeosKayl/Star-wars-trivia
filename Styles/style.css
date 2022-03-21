@@ -110,6 +110,10 @@ body main .character-comparison .btn-wrap .info-btn {
   font-size: 1.2rem;
 }
 
+body main .character-comparison .text-msg {
+  text-align: center;
+}
+
 body main .character-comparison .characters-info {
   display: -webkit-box;
   display: -ms-flexbox;

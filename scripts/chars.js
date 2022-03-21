@@ -1,4 +1,4 @@
-export class Characters{
+export class Character{
   constructor(name, gender, height, mass, hair_color, pictureUrl){
     this.name = name;
     this.gender = gender;
