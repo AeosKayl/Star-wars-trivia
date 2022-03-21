@@ -11,7 +11,7 @@ export class Character{
   genderComparison(second_character){
     return this.gender === second_character.gender;
   }
-  colorComparison(second_character){
+  colourComparison(second_character){
     return this.hair_color === second_character.hair_color;
   }
   heightComparison(second_character){

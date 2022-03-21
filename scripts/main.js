@@ -1,6 +1,6 @@
 console.log("Hello Boy!");
 
-import { Character } from "../scripts/chars.js";
+// import { Character } from "../scripts/chars.js";
 import { fetchCharacter } from "../scripts/fetchdata.js";
 
 
@@ -29,6 +29,8 @@ function createCharacter(char1,char2,place){
     let charName = place.querySelector(".char-name");
     charName.innerText = `${char1.name}`;
     heroImage.src = `${char1.pictureUrl}`;
+
+    //* gender comparison
     place.querySelector(".gender").addEventListener("click", ()=>{
       let genderOption = char1.genderComparison(char2);
       if(!genderOption){
@@ -39,7 +41,61 @@ function createCharacter(char1,char2,place){
         infoText.innerText = `I, ${char1.name}, and ${char2.name} are of the same sex! We both are ${char1.gender}.`;
       }
     })
+
+    //* hair colour comparison
+    place.querySelector(".hair").addEventListener("click", ()=>{
+      let hairOption = char1.colourComparison(char2);
+      if(hairOption){
+        if(char1.hair_color === "none"){
+          infoText.innerText = `I, ${char1.name} do not have hair nor does ${char2.name}.`;
+        }
+        else{
+          infoText.innerText = `I, ${char1.name}, have the same beautiful ${char1.hair_color} hair as ${char2.name}.`;
+        }
+      }else{
+        if(char1.hair_color === "none"){
+          infoText.innerText = `I, ${char1.name}, and ${char2.name} have different hair colors. I do not need hair to look good, while ${char2.name}'s mediocre ${char2.hair_color} hair is awful.`;
+        }else if(char2.hair_color === "none"){
+          infoText.innerText = `I, ${char1.name}, and ${char2.name} have different hair colors. I have this amazing ${char1.hair_color} hair while ${char2.name} has ${char2.hair_color}. Don't you dare compare my hair with ${char2.name}'s.`;
+        }
+        else{
+          infoText.innerText = `I, ${char1.name}, and ${char2.name} have different hair colors. I prefer my beautiful ${char1.hair_color} hair color over ${char2.name}'s mediocre ${char2.hair_color}.`;
+        }
+        
+      }
+    })
+
+    //* height comparison
+    place.querySelector(".height").addEventListener("click", ()=>{
+      let heightDiff = char1.heightComparison(char2);
+      if(heightDiff>0){
+        infoText.innerText = `I, ${char1.name}, am ${char1.height} cm tall while ${char2.name} is ${char2.height} cm tall. Basically I'm ${Math.abs(heightDiff)} cm taller.`;
+      }
+      else if(heightDiff<0){
+        infoText.innerText = `I, ${char1.name}, am ${char1.height} cm tall while ${char2.name} is ${char2.height} cm tall. Guess I'm ${Math.abs(heightDiff)} cm shorter, but who cares because I'm smarter.`;
+      }
+      else{
+        infoText.innerText = `I, ${char1.name}, am ${char1.height} cm tall and it seems to me that ${char2.name} is ${char2.height} cm tall too. Who would've thought that huh?.`;
+      }
+    })
+
+    //* weight comparison
+    place.querySelector(".weight").addEventListener("click", ()=>{
+      let weightDiff = char1.weightComparison(char2);
+      if(weightDiff>0){
+        infoText.innerText = `I, ${char1.name}, weigh ${char1.mass} kgs while ${char2.name} weighs ${char2.mass} kgs. That means that I'm ${Math.abs(weightDiff).toFixed(2)} kgs heavier but it's all muscles.`;
+      }
+      else if(weightDiff<0){
+        infoText.innerText = `I, ${char1.name}, weigh ${char1.mass} kgs while ${char2.name} is ${char2.mass} kgs heavy. I'm ${Math.abs(weightDiff).toFixed(2)} kgs lighter because I watch my diet, unlike that brute ${char2.name}.`;
+      }
+      else{
+        infoText.innerText = `I, ${char1.name}, and ${char2.name} weigh the same. ${char1.mass} kgs isn't that bad.`;
+      }
+    })
+
   }
+
+
 
 }
 
