@@ -2,6 +2,7 @@ import { Character } from "../scripts/chars.js";
 export async function fetchCharacter(characterName){
 
   //* assigning images to fetched characters that exist in html selections
+  //* names have to match the ones given in the API otherwise there will be issues
   let charImages = {
     "Luke Skywalker": "images/Luke.jpg",
     "Chewbacca": "images/Chewbacca.jpg",
@@ -16,6 +17,7 @@ export async function fetchCharacter(characterName){
   //* fetching characters and saving the response in a variable
   let fetchResponse = await fetch(`https://swapi.dev/api/people/?search=${characterName}`);
   const hero =await fetchResponse.json();
+  console.log(hero.results[0].name);
   return new Character(   //*returnera en ny instans av character med parametrarna
     hero.results[0].name,
     hero.results[0].gender,

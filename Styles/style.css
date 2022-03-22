@@ -1,9 +1,13 @@
+* {
+  -webkit-box-sizing: border-box;
+          box-sizing: border-box;
+  padding: 0;
+  margin: 0;
+}
+
 body {
   background: url("../images/BG.jpg") no-repeat center center fixed;
   background-repeat: no-repeat;
-  background-size: auto;
-  -webkit-box-sizing: border-box;
-          box-sizing: border-box;
   background-size: cover;
 }
 
@@ -12,6 +16,7 @@ body header {
   height: 20%;
   display: -webkit-box;
   display: -ms-flexbox;
+  display: flex;
   display: flex;
   -webkit-box-orient: vertical;
   -webkit-box-direction: normal;
@@ -26,11 +31,18 @@ body header {
 }
 
 body header .heading {
+  font-family: 'Jost', sans-serif;
+  text-transform: uppercase;
+  font-weight: bolder;
   color: silver;
-  text-shadow: 5px 5px 10px #e45411;
   text-align: center;
-  font-size: 2rem;
+  font-size: 3.5rem;
   width: 100%;
+}
+
+body header .heading span {
+  background-color: #020202;
+  border-radius: 40%;
 }
 
 body header .container {
@@ -71,9 +83,16 @@ body main img {
   max-width: 100%;
 }
 
+body main .character-comparison option, body main .character-comparison select, body main .character-comparison .btn, body main .character-comparison .char-name {
+  font-family: 'Cinzel', serif;
+}
+
 body main .character-comparison .heading.center {
   text-align: center;
-  color: gold;
+  font-family: 'Jost', sans-serif;
+  background-color: #000000;
+  border-radius: 80%;
+  color: #00ddff;
   text-shadow: 5px 5px 10px #8d8989;
   font-size: 1.75rem;
 }
@@ -84,6 +103,9 @@ body main .character-comparison .selections {
   display: flex;
   -ms-flex-pack: distribute;
       justify-content: space-around;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
 }
 
 body main .character-comparison .selections .character-choice {
@@ -100,6 +122,15 @@ body main .character-comparison .selections .character-choice {
 body main .character-comparison .selections .character-choice select {
   margin: 20px 10px;
   padding: 0.844rem 1rem;
+  font-size: 0.8rem;
+  border-radius: 10px;
+  border: none;
+}
+
+@media screen and (min-width: 600px) {
+  body main .character-comparison .selections .character-choice select {
+    font-size: 1.2rem;
+  }
 }
 
 body main .character-comparison .btn-wrap {
@@ -116,10 +147,26 @@ body main .character-comparison .btn-wrap {
 body main .character-comparison .btn-wrap .info-btn {
   padding: 10px;
   font-size: 1.5rem;
+  border-radius: 10px;
+  border: none;
+  background-color: #f0f0ee;
+  -webkit-box-shadow: #3f3e3e 5px 5px 5px;
+          box-shadow: #3f3e3e 5px 5px 5px;
+}
+
+body main .character-comparison .btn-wrap .info-btn:hover {
+  background-color: gold;
 }
 
 body main .character-comparison .text-msg {
+  font-family: 'Jost', sans-serif;
+  background-color: black;
+  font-size: 1.5rem;
+  -ms-flex-item-align: start;
+      -ms-grid-row-align: start;
+      align-self: start;
   text-align: center;
+  margin: 20px 40px;
   color: white;
 }
 
@@ -127,42 +174,46 @@ body main .character-comparison .characters-info {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
-  width: 100%;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
   -webkit-box-pack: center;
       -ms-flex-pack: center;
           justify-content: center;
   -webkit-box-align: center;
       -ms-flex-align: center;
           align-items: center;
+  width: 100%;
 }
 
-@media only screen and (max-width: 600px) {
+@media only screen and (min-width: 600px) {
   body main .character-comparison .characters-info {
-    -webkit-box-orient: vertical;
+    -webkit-box-orient: horizontal;
     -webkit-box-direction: normal;
-        -ms-flex-direction: column;
-            flex-direction: column;
+        -ms-flex-direction: row;
+            flex-direction: row;
   }
 }
 
 body main .character-comparison .characters-info .char-image {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
   max-width: 450px;
   max-height: 450px;
   background-color: azure;
   border: 2px solid whitesmoke;
+  border-radius: 12px;
   background-color: rgba(255, 247, 240, 0.089);
-  /* margin: 0 auto; */
   min-height: 400px;
   overflow: hidden;
-  -webkit-box-align: center;
-      -ms-flex-align: center;
-          align-items: center;
-  -webkit-box-pack: center;
-      -ms-flex-pack: center;
-          justify-content: center;
-  display: -webkit-box;
-  display: -ms-flexbox;
-  display: flex;
 }
 
 body main .character-comparison .characters-info .char-image img {
@@ -172,6 +223,12 @@ body main .character-comparison .characters-info .char-image img {
   border-radius: 12px;
   -o-object-fit: cover;
      object-fit: cover;
+}
+
+body main .character-comparison .characters-info .char-name {
+  text-align: center;
+  font-size: 1.5rem;
+  color: white;
 }
 
 body main .character-comparison .characters-info .char-prop-btns {
@@ -189,9 +246,18 @@ body main .character-comparison .characters-info .char-prop-btns .btn {
   margin-bottom: 5px;
   font-size: 1.2rem;
   border-radius: 10px;
+  border: none;
   background-color: #f0f0ee;
   -webkit-box-shadow: #3f3e3e 5px 5px 5px;
           box-shadow: #3f3e3e 5px 5px 5px;
+}
+
+body main .character-comparison .characters-info .char-prop-btns .btn:hover {
+  background: #00ddff;
+}
+
+body main .character-comparison .characters-info .char-prop-btns .btn:active {
+  background: #00eeff;
 }
 
 body main .character-comparison .characters-info section {

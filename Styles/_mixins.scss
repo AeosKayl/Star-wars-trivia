@@ -1,0 +1,30 @@
+//* mixins to be used
+
+@mixin flexCenter ($dir,$cont,$align){
+  display: flex;
+  flex-direction: $dir; //column
+  justify-content: $cont;//center
+  align-items: $align;//center
+}
+
+@mixin flexAround{
+  display: flex;
+  justify-content: space-around;
+};
+  
+
+//*fonts
+@mixin cinzel-font{
+  font-family: 'Cinzel', serif;
+}
+@mixin main-font{
+  font-family: 'Jost', sans-serif;
+};
+
+//* button styling
+@mixin btn-style{
+  border-radius: 10px;
+  border:none;
+  background-color: rgb(240, 240, 238);
+  box-shadow: #3f3e3e 5px 5px 5px;
+}

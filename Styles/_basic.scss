@@ -1,31 +1,37 @@
-// *{
-//   background-color: gold;
-// }
+  *{
+    box-sizing: border-box;
+    padding: 0;
+    margin: 0;
+  }
 body{
   background: url('../images/BG.jpg') no-repeat center center fixed;
   background-repeat: no-repeat;
-  background-size: auto;
-  box-sizing: border-box;
   background-size: cover;
+  // background-size: auto;
   // height: 100%;
   // overflow: hidden;
-
   // display: flex;
+
   //*styling of header
   header{
     width: 100%;
     height: 20%;
-    // opacity: 30%;
     display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
+    @include flexCenter(column, center, center);
+
     .heading{
+      @include main-font;
+      text-transform: uppercase;
+      font-weight: bolder;
       color: silver;
-      text-shadow: 5px 5px 10px #e45411;
+      // text-shadow: 5px 5px 10px #e45411;
       text-align: center;
-      font-size: 2rem;
+      font-size: 3.5rem;
       width: 100%;
+      span{
+        background-color: #020202;
+        border-radius: 40%;
+      }
     }
     .container{
       width: 100%;
@@ -35,7 +41,7 @@ body{
         display: flex;
         justify-content: center;
         img{
-          width:300px;
+          width:300px; //* logo size adjustment
         }
   
       }
@@ -57,23 +63,35 @@ body{
 
     .character-comparison{
 
+      option,select,.btn,.char-name{
+        @include cinzel-font;
+      }
+
       .heading.center{
         text-align: center;
-        color: gold;
+        @include main-font;
+        background-color: #000000;
+        border-radius: 80%;
+        color: hsl(188, 100%, 50%);
         text-shadow: 5px 5px 10px #8d8989;
         font-size: 1.75rem;
       }
       .selections{
-        display: flex;
-        justify-content: space-around;
+        @include flexAround;
+        justify-content: center;
         .character-choice{
-          display: flex;
-          // width: 100%;
-          justify-content: space-around;
+          @include flexAround;
           align-items: center;
           select{
             margin: 20px 10px;
             padding: 0.844rem 1rem;
+            font-size: 0.8rem;
+            border-radius: 10px;
+            border:none; 
+            
+            @media screen and (min-width: 600px){
+              font-size: 1.2rem;
+            }
           }
         }
 
@@ -88,34 +106,45 @@ body{
         .info-btn{
           padding: 10px;
           font-size: 1.5rem;
+          @include btn-style;
+          &:hover{
+            background-color: gold;
+          }
         }
       }
       .text-msg{
+        @include main-font;
+        background-color: black;
+        font-size: 1.5rem;
+        align-self: start;
         text-align:center;
+        margin: 20px 40px;
         color: white;
       }
       .characters-info{
-        display: flex;
+        @include flexCenter(column, center, center);
         width: 100%;
-        justify-content: center;
-        align-items: center;
+        
 
-        @media only screen and (max-width: 600px) {
-          flex-direction: column;
+        @media only screen and (min-width: 600px) {
+          flex-direction: row;
         };
 
         .char-image{
+          display: flex;
+          justify-content: center;
+          align-items: center;
           max-width: 450px;
           max-height: 450px;
           background-color: azure;
           border: 2px solid whitesmoke;
+          border-radius: 12px;
           background-color: hsla(28, 100%, 97%, 0.089);
-          /* margin: 0 auto; */
           min-height: 400px;
           overflow: hidden;
-          align-items: center;
-          justify-content: center;
-          display: flex;
+          
+          
+          
           img{
             width: 400px;
             height: 400px;
@@ -128,6 +157,13 @@ body{
       
         }
 
+        .char-name{
+         text-align: center;
+         font-size: 1.5rem;
+         color: white;
+        //  margin-bottom: 10px;
+        }
+
         .char-prop-btns{
           display: flex;
           flex-direction: column;
@@ -136,9 +172,18 @@ body{
             padding: 10px;
             margin-bottom: 5px;
             font-size: 1.2rem;
-            border-radius: 10px;
-            background-color: rgb(240, 240, 238);
-            box-shadow: #3f3e3e 5px 5px 5px;
+            @include btn-style;
+
+            &:hover{
+              background: hsl(188, 100%, 50%);
+            }
+            &:active{
+              background: hsl(184, 100%, 50%);
+            }
+            // border-radius: 10px;
+            // border:none;
+            // background-color: rgb(240, 240, 238);
+            // box-shadow: #3f3e3e 5px 5px 5px;
           }
         }
   
