@@ -14,8 +14,14 @@ console.log(firstCharBox, secondCharBox);
 let infoText = document.querySelector(".text-msg");
 // console.log(infoText);
 //* variables needed for the comparison feature
-
+let compContainer = document.querySelector(".comparison-list-container");
+let compInputContainer = document.querySelector(".comparison-input-container");
+let compOption = document.createElement("option");
+let compSaveBtn = document.querySelector(".saveBtn");
+let compSelection = document.querySelector("#comp-history");
 let compHistoryName = [];
+let comparedCharacters = {};
+let comparedCharList = [];
 
 //* functions that will be used for the app
 function createCharacter(char1, char2, place) {
@@ -128,39 +134,78 @@ infoBtn.addEventListener("click", async () => {
   }
 });
 
-const comparisonList = () => {
+const createComparedChars = () => {
   let comparisonChoices = [firstCharSelect.value, secondCharSelect.value];
   let comparisonName = document.querySelector(".comp-name").value;
+  comparedCharacters = {
+    name: comparisonName,
+    characterNames: comparisonChoices,
+    favourite: false,
+  };
 
-  localStorage.setItem(comparisonName, comparisonChoices);
+  //*for storing in local storage, needs tweeking and the right approach
+  // localStorage.setItem(comparisonName, comparisonChoices);
   const comparisonHistoryCount = compHistoryName.push(comparisonName);
   console.log(compHistoryName);
   console.log(comparisonHistoryCount);
-  return comparisonName;
+  console.log(comparedCharacters);
+  // return comparisonName;
+  return comparedCharacters;
 };
 
-let compOption = document.createElement("option");
-let compSaveBtn = document.querySelector(".saveBtn");
-let compSelection = document.querySelector("#comp-history");
+// let compOption = document.createElement("option");
+// let compSaveBtn = document.querySelector(".saveBtn");
+// let compSelection = document.querySelector("#comp-history");
 console.log(compSaveBtn, compSelection);
+
+//*eventlistener for save button
 compSaveBtn.addEventListener("click", (e) => {
   e.preventDefault();
-  let compName = comparisonList();
+  let compChars = createComparedChars();
+  comparedCharList.push(compChars);
+  //*TODO think about cleanup.
+  console.log(comparedCharList, comparedCharList[0].name);
+  compSelection.innerHTML = "";
+
+  // for creating dropdown list
+  comparedCharList.forEach((comparison, index) => {
+    let compOptions = document.createElement("option");
+    compOptions.innerText = comparison.name;
+    compOptions.setAttribute("id", index);
+    compOptions.setAttribute("value", comparison.name);
+    console.log(comparison);
+    compSelection.append(compOptions);
+  });
+
   // localStorage.clear();
-  if (localStorage.getItem(compName)) {
-    // let compOption = document.createElement("option");
-    compOption.innerText = compName;
-    console.log(compOption.innerText);
-    compSelection.appendChild(compOption);
-  }
+
+  //*if there's a key in localstorage,do this
+  // if (localStorage.getItem(compName)) {
+  //   compOption.innerText = compName;
+  //   console.log(compOption.innerText);
+  //   compSelection.appendChild(compOption);
+  // }
 });
 
+//* possible function for creating options
+// const createList = () => {
+//   comparedCharList.forEach((comparison) => {
+//     let compOptions = document.createElement("option");
+//     compOptions.innerText = comparison.name;
+//     console.log(comparison);
+//     compSelection.append(compOptions);
+//   });
+// };
+
+// createList();
+
+//* for showing the keys stored in localStorage
 // const storageItems = { ...localStorage };
 // console.log(storageItems);
-const keys = Object.keys(localStorage);
-if (keys) {
-  let i = keys.length;
-  while (i--) {
-    console.log(localStorage.getItem(keys[i]));
-  }
-}
+// const keys = Object.keys(localStorage);
+// if (keys) {
+//   let i = keys.length;
+//   while (i--) {
+//     console.log(localStorage.getItem(keys[i]));
+//   }
+// }
