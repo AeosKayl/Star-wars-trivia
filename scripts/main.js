@@ -164,7 +164,7 @@ compSaveBtn.addEventListener("click", (e) => {
   let compChars = createComparedChars();
   comparedCharList.push(compChars);
   //*TODO think about cleanup.
-  console.log(comparedCharList, comparedCharList[0].name);
+  console.log(comparedCharList, comparedCharList.name);
   compSelection.innerHTML = "";
 
   // for creating dropdown list
@@ -185,6 +185,23 @@ compSaveBtn.addEventListener("click", (e) => {
   //   console.log(compOption.innerText);
   //   compSelection.appendChild(compOption);
   // }
+});
+
+let selectBtn = document.querySelector("select");
+let optionBtn = document.querySelector("option");
+//* eventlistener that generates the selected comparison
+selectBtn.addEventListener("click", (e) => {
+  e.preventDefault();
+  console.log(selectBtn.value);
+  let index = comparedCharList
+    .map((object) => object.name)
+    .indexOf(selectBtn.value);
+  console.log(index);
+  if (selectBtn.value) {
+    firstCharSelect.value = comparedCharList[index].characterNames[0];
+    secondCharSelect.value = comparedCharList[index].characterNames[1];
+    infoBtn.click();
+  }
 });
 
 //* possible function for creating options
