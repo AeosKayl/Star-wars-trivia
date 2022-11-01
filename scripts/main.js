@@ -136,13 +136,31 @@ const comparisonList = () => {
   const comparisonHistoryCount = compHistoryName.push(comparisonName);
   console.log(compHistoryName);
   console.log(comparisonHistoryCount);
+  return comparisonName;
 };
 
+let compOption = document.createElement("option");
 let compSaveBtn = document.querySelector(".saveBtn");
 let compSelection = document.querySelector("#comp-history");
 console.log(compSaveBtn, compSelection);
 compSaveBtn.addEventListener("click", (e) => {
   e.preventDefault();
-  comparisonList();
+  let compName = comparisonList();
   // localStorage.clear();
+  if (localStorage.getItem(compName)) {
+    // let compOption = document.createElement("option");
+    compOption.innerText = compName;
+    console.log(compOption.innerText);
+    compSelection.appendChild(compOption);
+  }
 });
+
+// const storageItems = { ...localStorage };
+// console.log(storageItems);
+const keys = Object.keys(localStorage);
+if (keys) {
+  let i = keys.length;
+  while (i--) {
+    console.log(localStorage.getItem(keys[i]));
+  }
+}
