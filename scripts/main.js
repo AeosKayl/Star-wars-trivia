@@ -20,6 +20,7 @@ let compOption = document.createElement("option");
 let compSaveBtn = document.querySelector(".saveBtn");
 let compSelection = document.querySelector("#comp-history");
 let markFavBtn = document.querySelector(".make-fav");
+let favouriteText = " - (Favourite)";
 let compHistoryName = [];
 let comparedCharacters = {};
 let comparedCharList = [];
@@ -168,22 +169,20 @@ console.log(compSaveBtn, compSelection);
 //*eventlistener for save button
 compSaveBtn.addEventListener("click", (e) => {
   e.preventDefault();
-  let comparisonName = document.querySelector(".comp-name").value;
+  // let comparisonName = document.querySelector(".comp-name").value;
   let editName = prompt(
-    "Edit the name of your choice!",
-    document.querySelector(".comp-name").value
+    "Edit the name of your choice!"
+    // document.querySelector(".comp-name").value
   );
   if (editName === "" || editName === undefined || editName === null) {
     alert("You can not have an empty name");
     return false;
-  } else {
-    comparisonName = editName;
   }
-  let compChars = createComparedChars(comparisonName);
+  let compChars = createComparedChars(editName);
   comparedCharList.push(compChars);
   //*TODO think about cleanup.
   console.log(comparedCharList, comparedCharList.name);
-  document.querySelector(".comp-name").value = "";
+  // document.querySelector(".comp-name").value = "";
   compSelection.innerHTML = "";
 
   // for creating dropdown list
@@ -230,13 +229,26 @@ markFavBtn.addEventListener("click", (e) => {
   e.preventDefault();
   let optionBtns = document.querySelectorAll(".comp-history option");
   let optionBtnsArray = [...optionBtns];
-  let selectedOption = optionBtnsArray.map(
-    (option) => (option.selected = true)
-  );
+  // let selectedOption = optionBtnsArray.map(
+  //   (option) => (option.selected = true)
+  // );
+  optionBtnsArray.forEach((option) => {
+    if (option.selected === true) {
+      console.log(option);
+      option.innerText += favouriteText;
+      option.setAttribute("favourite", true);
+      // markFavBtn.disabled = true;
+      console.log(option.getAttribute("favourite"));
+    } else {
+      option.innerText = option.value;
+      option.setAttribute("favourite", false);
+      // markFavBtn.disabled = false;
+    }
+  });
 
   console.log(optionBtns);
   console.log(optionBtnsArray);
-  console.log(selectedOption);
+  // console.log(selectedOption);
   console.log(selectBtn.value);
 });
 
