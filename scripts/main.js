@@ -19,6 +19,7 @@ let compInputContainer = document.querySelector(".comparison-input-container");
 let compOption = document.createElement("option");
 let compSaveBtn = document.querySelector(".saveBtn");
 let compSelection = document.querySelector("#comp-history");
+let markFavBtn = document.querySelector(".make-fav");
 let compHistoryName = [];
 let comparedCharacters = {};
 let comparedCharList = [];
@@ -134,9 +135,15 @@ infoBtn.addEventListener("click", async () => {
   }
 });
 
-const createComparedChars = () => {
+const createComparedChars = (name) => {
   let comparisonChoices = [firstCharSelect.value, secondCharSelect.value];
-  let comparisonName = document.querySelector(".comp-name").value;
+  let comparisonName = name;
+  // let comparisonName = document.querySelector(".comp-name").value;
+  // let editName = prompt("Edit the name of your choice!",comparisonName);
+  // console.log(typeof editName);
+  // if(editName !== undefined){
+  //   comparisonName = editName;
+  // }
   comparedCharacters = {
     name: comparisonName,
     characterNames: comparisonChoices,
@@ -161,10 +168,22 @@ console.log(compSaveBtn, compSelection);
 //*eventlistener for save button
 compSaveBtn.addEventListener("click", (e) => {
   e.preventDefault();
-  let compChars = createComparedChars();
+  let comparisonName = document.querySelector(".comp-name").value;
+  let editName = prompt(
+    "Edit the name of your choice!",
+    document.querySelector(".comp-name").value
+  );
+  if (editName === "" || editName === undefined || editName === null) {
+    alert("You can not have an empty name");
+    return false;
+  } else {
+    comparisonName = editName;
+  }
+  let compChars = createComparedChars(comparisonName);
   comparedCharList.push(compChars);
   //*TODO think about cleanup.
   console.log(comparedCharList, comparedCharList.name);
+  document.querySelector(".comp-name").value = "";
   compSelection.innerHTML = "";
 
   // for creating dropdown list
@@ -173,6 +192,7 @@ compSaveBtn.addEventListener("click", (e) => {
     compOptions.innerText = comparison.name;
     compOptions.setAttribute("id", index);
     compOptions.setAttribute("value", comparison.name);
+    compOptions.setAttribute("favourite", comparison.favourite);
     console.log(comparison);
     compSelection.append(compOptions);
   });
@@ -187,12 +207,14 @@ compSaveBtn.addEventListener("click", (e) => {
   // }
 });
 
-let selectBtn = document.querySelector("select");
-let optionBtn = document.querySelector("option");
+let selectBtn = document.querySelector("select.comp-history");
+// let optionBtn = document.querySelector(".comp-history option");
 //* eventlistener that generates the selected comparison
 selectBtn.addEventListener("click", (e) => {
   e.preventDefault();
+  // let optionBtn = document.querySelector(".comp-history option");
   console.log(selectBtn.value);
+  // console.log(optionBtn);
   let index = comparedCharList
     .map((object) => object.name)
     .indexOf(selectBtn.value);
@@ -203,6 +225,31 @@ selectBtn.addEventListener("click", (e) => {
     infoBtn.click();
   }
 });
+
+markFavBtn.addEventListener("click", (e) => {
+  e.preventDefault();
+  let optionBtns = document.querySelectorAll(".comp-history option");
+  let optionBtnsArray = [...optionBtns];
+  let selectedOption = optionBtnsArray.map(
+    (option) => (option.selected = true)
+  );
+
+  console.log(optionBtns);
+  console.log(optionBtnsArray);
+  console.log(selectedOption);
+  console.log(selectBtn.value);
+});
+
+//* dblclick event attempt to make a fav
+// selectBtn.addEventListener("dblclick", (e) => {
+//   e.preventDefault();
+//   let optionBtn = document.querySelector(".comp-history option");
+//   let makeFav = prompt("Would you like to mark this as favourite?", "yes");
+//   if (makeFav === "yes") {
+//     optionBtn.classList.add("fav");
+//   }
+//   // optionBtn.classList.add("fav");
+// });
 
 //* possible function for creating options
 // const createList = () => {
