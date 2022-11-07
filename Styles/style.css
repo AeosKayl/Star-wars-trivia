@@ -83,8 +83,25 @@ body main img {
   max-width: 100%;
 }
 
-body main .character-comparison option, body main .character-comparison select, body main .character-comparison .btn, body main .character-comparison .char-name {
+body main .character-comparison option,
+body main .character-comparison select,
+body main .character-comparison .btn,
+body main .character-comparison .char-name {
   font-family: 'Cinzel', serif;
+}
+
+body main .character-comparison .comparison-list .comparison-input-container .saveBtn {
+  padding: 5px;
+  font-size: 1rem;
+  border-radius: 10px;
+  border: none;
+  background-color: #f0f0ee;
+  -webkit-box-shadow: #3f3e3e 5px 5px 5px;
+          box-shadow: #3f3e3e 5px 5px 5px;
+}
+
+body main .character-comparison .comparison-list .comparison-input-container .saveBtn:hover {
+  background-color: gold;
 }
 
 body main .character-comparison .heading.center {
@@ -213,7 +230,6 @@ body main .character-comparison .characters-info .char-image {
   border-radius: 12px;
   background-color: rgba(255, 247, 240, 0.089);
   min-height: 400px;
-  overflow: hidden;
 }
 
 body main .character-comparison .characters-info .char-image img {

@@ -70,16 +70,26 @@ body {
       //   background: gold;
       // }
       //*trying to style .fav
-      // .comparison-list {
-      //   .comp-list-container {
-      //     .comp-history {
-      //       option.fav {
-      //         font-size: x-large;
-      //         font-weight: bold;
-      //       }
-      //     }
-      //   }
-      // }
+      .comparison-list {
+        .comparison-input-container {
+          .saveBtn {
+            padding: 5px;
+            font-size: 1rem;
+            @include btn-style;
+            &:hover {
+              background-color: gold;
+            }
+          }
+        }
+        // .comp-list-container {
+        //   .comp-history {
+        //     option.fav {
+        //       font-size: x-large;
+        //       font-weight: bold;
+        //     }
+        //   }
+        // }
+      }
 
       .heading.center {
         text-align: center;

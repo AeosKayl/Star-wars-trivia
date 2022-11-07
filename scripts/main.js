@@ -135,7 +135,7 @@ infoBtn.addEventListener("click", async () => {
       "You have not chosen your characters yet. Please do so!";
   }
 });
-
+//* function to create an object with comparison info
 const createComparedChars = (name) => {
   let comparisonChoices = [firstCharSelect.value, secondCharSelect.value];
   let comparisonName = name;
