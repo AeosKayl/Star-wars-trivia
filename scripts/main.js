@@ -147,10 +147,7 @@ const createComparedChars = (name) => {
   //*for storing in local storage, needs tweeking and the right approach
   // localStorage.setItem(comparisonName, comparisonChoices);
   const comparisonHistoryCount = compHistoryName.push(comparisonName);
-  // console.log(compHistoryName);
   console.log(comparisonHistoryCount);
-  // console.log(comparedCharacters);
-  // return comparisonName;
   return comparedCharacters;
 };
 
@@ -173,22 +170,12 @@ compSaveBtn.addEventListener("click", (e) => {
 
   //* for creating dropdown list
   createList(comparedCharList);
-
-  // localStorage.clear();
-
-  //*if there's a key in localstorage,do this (not used atm, needs to be changed)
-  // if (localStorage.getItem(compName)) {
-  //   compOption.innerText = compName;
-  //   console.log(compOption.innerText);
-  //   compSelection.appendChild(compOption);
-  // }
 });
 
 let selectBtn = document.querySelector("select.comp-history");
 //* eventlistener that generates the selected comparison
 selectBtn.addEventListener("click", (e) => {
   e.preventDefault();
-  //console.log(selectBtn.value); for checking the value
   let index = indexByName(comparedCharList, selectBtn.value);
   console.log(index);
   if (selectBtn.value !== "empty") {
@@ -213,8 +200,6 @@ markFavBtn.addEventListener("click", (e) => {
       optiontag.selected === true &&
       optiontag.getAttribute("favourite") === "false"
     ) {
-      // console.log(indexOfUpdate); for checking purposes
-      // console.log(comparedCharList); for checking purposes
       comparedCharList[indexOfUpdate].favourite = true;
       optiontag.innerText += favouriteText;
       optiontag.classList.add(favClass);
@@ -224,12 +209,8 @@ markFavBtn.addEventListener("click", (e) => {
       optiontag.innerText = optiontag.value;
       optiontag.setAttribute("favourite", false);
       optiontag.classList.remove(favClass);
-      // console.log(comparedCharList); for checking purposes
     }
   }
-
-  // console.log(optionBtns); for checking purposes
-  // console.log(selectBtn.value); for checking purposes
 });
 //* eventlistener for delete comparison button
 deleteCompBtn.addEventListener("click", (e) => {
@@ -270,37 +251,6 @@ const createList = (arrayOfObjects) => {
     compOptions.setAttribute("id", index);
     compOptions.setAttribute("value", comparison.name);
     compOptions.setAttribute("favourite", comparison.favourite);
-    console.log(comparison);
     compSelection.append(compOptions);
   });
 };
-
-//* delete function with slice, does not mutate (not used atm)
-// const deleteArrayElement = (array, index) => [
-//   ...array.slice(0, index),
-//   ...array.slice(index + 1),
-// ];
-
-//* function for deleting an element from an array using filter (not used atm)
-//const removeObj = (array, index) => array.filter(object => object.index !== index);
-
-//* for showing the keys stored in localStorage (not used atm)
-// const storageItems = { ...localStorage };
-// console.log(storageItems);
-// const keys = Object.keys(localStorage);
-// if (keys) {
-//   let i = keys.length;
-//   while (i--) {
-//     console.log(localStorage.getItem(keys[i]));
-//   }
-// }
-//* dblclick event attempt to make a fav (not used atm)
-// selectBtn.addEventListener("dblclick", (e) => {
-//   e.preventDefault();
-//   let optionBtn = document.querySelector(".comp-history option");
-//   let makeFav = prompt("Would you like to mark this as favourite?", "yes");
-//   if (makeFav === "yes") {
-//     optionBtn.classList.add("fav");
-//   }
-//   // optionBtn.classList.add("fav");
-// });
