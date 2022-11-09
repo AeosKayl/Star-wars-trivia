@@ -1,18 +1,15 @@
 console.log("Hello Boy!");
 
-// import { Character } from "../scripts/chars.js";
 import { fetchCharacter } from "../scripts/fetchdata.js";
 
 //* creating needed variables
 let infoBtn = document.querySelector(".info-btn");
 let firstCharSelect = document.getElementById("first-char");
 let secondCharSelect = document.getElementById("second-char");
-// console.log(firstCharSelect,secondCharSelect);
 let firstCharBox = document.querySelector(".char-1-wrapper");
 let secondCharBox = document.querySelector(".char-2-wrapper");
-console.log(firstCharBox, secondCharBox);
+//console.log(firstCharBox, secondCharBox);
 let infoText = document.querySelector(".text-msg");
-// console.log(infoText);
 //* variables needed for the comparison feature
 let compContainer = document.querySelector(".comparison-list-container");
 let compInputContainer = document.querySelector(".comparison-input-container");
@@ -141,12 +138,6 @@ infoBtn.addEventListener("click", async () => {
 const createComparedChars = (name) => {
   let comparisonChoices = [firstCharSelect.value, secondCharSelect.value];
   let comparisonName = name;
-  // let comparisonName = document.querySelector(".comp-name").value;
-  // let editName = prompt("Edit the name of your choice!",comparisonName);
-  // console.log(typeof editName);
-  // if(editName !== undefined){
-  //   comparisonName = editName;
-  // }
   comparedCharacters = {
     name: comparisonName,
     characterNames: comparisonChoices,
@@ -156,17 +147,12 @@ const createComparedChars = (name) => {
   //*for storing in local storage, needs tweeking and the right approach
   // localStorage.setItem(comparisonName, comparisonChoices);
   const comparisonHistoryCount = compHistoryName.push(comparisonName);
-  console.log(compHistoryName);
+  // console.log(compHistoryName);
   console.log(comparisonHistoryCount);
-  console.log(comparedCharacters);
+  // console.log(comparedCharacters);
   // return comparisonName;
   return comparedCharacters;
 };
-
-// let compOption = document.createElement("option");
-// let compSaveBtn = document.querySelector(".saveBtn");
-// let compSelection = document.querySelector("#comp-history");
-console.log(compSaveBtn, compSelection);
 
 //*eventlistener for save button
 compSaveBtn.addEventListener("click", (e) => {
@@ -175,11 +161,7 @@ compSaveBtn.addEventListener("click", (e) => {
     alert("You need to pick your two characters for comparison");
     return;
   }
-  // let comparisonName = document.querySelector(".comp-name").value;
-  let editName = prompt(
-    "Edit the name of your choice!"
-    // document.querySelector(".comp-name").value
-  );
+  let editName = prompt("Edit the name of your choice!");
   if (editName === "" || editName === undefined || editName === null) {
     alert("You can not have an empty name");
     return false;
@@ -187,24 +169,14 @@ compSaveBtn.addEventListener("click", (e) => {
   let compChars = createComparedChars(editName);
   comparedCharList.push(compChars);
   //*TODO think about cleanup.
-  console.log(comparedCharList);
-  // document.querySelector(".comp-name").value = "";
   compSelection.innerHTML = "";
 
-  // for creating dropdown list
-  comparedCharList.forEach((comparison, index) => {
-    let compOptions = document.createElement("option");
-    compOptions.innerText = comparison.name;
-    compOptions.setAttribute("id", index);
-    compOptions.setAttribute("value", comparison.name);
-    compOptions.setAttribute("favourite", comparison.favourite);
-    console.log(comparison);
-    compSelection.append(compOptions);
-  });
+  //* for creating dropdown list
+  createList(comparedCharList);
 
   // localStorage.clear();
 
-  //*if there's a key in localstorage,do this
+  //*if there's a key in localstorage,do this (not used atm, needs to be changed)
   // if (localStorage.getItem(compName)) {
   //   compOption.innerText = compName;
   //   console.log(compOption.innerText);
@@ -213,19 +185,12 @@ compSaveBtn.addEventListener("click", (e) => {
 });
 
 let selectBtn = document.querySelector("select.comp-history");
-// let optionBtn = document.querySelector(".comp-history option");
 //* eventlistener that generates the selected comparison
 selectBtn.addEventListener("click", (e) => {
   e.preventDefault();
-  // let optionBtn = document.querySelector(".comp-history option");
-  console.log(selectBtn.value);
-  // console.log(optionBtn);
-  // let index = comparedCharList
-  //   .map((object) => object.name)
-  //   .indexOf(selectBtn.value);
+  //console.log(selectBtn.value); for checking the value
   let index = indexByName(comparedCharList, selectBtn.value);
   console.log(index);
-  // console.log(indexByName(comparedCharList, selectBtn.value));
   if (selectBtn.value !== "empty") {
     firstCharSelect.value = comparedCharList[index].characterNames[0];
     secondCharSelect.value = comparedCharList[index].characterNames[1];
@@ -238,25 +203,6 @@ selectBtn.addEventListener("click", (e) => {
 markFavBtn.addEventListener("click", (e) => {
   e.preventDefault();
   let optionBtns = [...document.querySelectorAll(".comp-history option")];
-  // let optionBtnsArray = [...optionBtns];
-  // let selectedOption = optionBtnsArray.map(
-  //   (option) => (option.selected = true)
-  // );
-  // optionBtns.forEach((option) => {
-  //   if (option.value === "empty") {
-  //     return false;
-  //   } else if (option.selected === true) {
-  //     console.log(option);
-  //     option.innerText += favouriteText;
-  //     option.setAttribute("favourite", true);
-  //     // markFavBtn.disabled = true;
-  //     console.log(option.getAttribute("favourite"));
-  //   } else {
-  //     option.innerText = option.value;
-  //     option.setAttribute("favourite", false);
-  //     // markFavBtn.disabled = false;
-  //   }
-  // });
 
   for (let optiontag of optionBtns) {
     let indexOfUpdate = indexByName(comparedCharList, optiontag.value);
@@ -267,57 +213,28 @@ markFavBtn.addEventListener("click", (e) => {
       optiontag.selected === true &&
       optiontag.getAttribute("favourite") === "false"
     ) {
-      console.log(indexOfUpdate);
-      // console.log(favourite);
-      console.log(comparedCharList);
+      // console.log(indexOfUpdate); for checking purposes
+      // console.log(comparedCharList); for checking purposes
       comparedCharList[indexOfUpdate].favourite = true;
       optiontag.innerText += favouriteText;
       optiontag.classList.add(favClass);
       optiontag.setAttribute("favourite", true);
-
-      // console.log(favourite);
     } else {
       comparedCharList[indexOfUpdate].favourite = false;
       optiontag.innerText = optiontag.value;
       optiontag.setAttribute("favourite", false);
       optiontag.classList.remove(favClass);
-      console.log(comparedCharList);
+      // console.log(comparedCharList); for checking purposes
     }
   }
 
-  console.log(optionBtns);
-  // console.log(optionBtnsArray);
-  // console.log(selectedOption);
-  console.log(selectBtn.value);
+  // console.log(optionBtns); for checking purposes
+  // console.log(selectBtn.value); for checking purposes
 });
 //* eventlistener for delete comparison button
 deleteCompBtn.addEventListener("click", (e) => {
   e.preventDefault();
   let optionBtns = [...document.querySelectorAll(".comp-history option")];
-  // let optionBtnsArray = [...optionBtns];
-  // console.log(optionBtnsArray.length);
-  // let nameOfComparison = comparedCharList.map((object) => object.name);
-  // console.log(nameOfComparison, comparedCharList, compHistoryName);
-  let isDeleted = false;
-  // optionBtns.forEach((option, index) => {
-  //   if (isDeleted) return;
-  //   if (option.selected === true && option.value !== "empty") {
-  //     // deleteArrayElement(optionBtnsArray, index);
-  //     let indexOfDelete = indexByName(comparedCharList, option.value);
-  //     // console.log(indexOfDelete);
-  //     // console.log(comparedCharList);
-  //     deleteArrayElement(comparedCharList, indexOfDelete);
-  //     // console.log(comparedCharList);
-  //     option.remove();
-  //     isDeleted = true;
-  //     // console.log(selectBtn.value);
-  //     if (comparedCharList.length === 0) {
-  //       selectBtn.innerHTML = `<option class="disabled" value="empty" selected disabled>
-  //       Select a comparison
-  //     </option>`;
-  //     }
-  //   }
-  // });
 
   for (let optiontag of optionBtns) {
     if (optiontag.selected) {
@@ -332,49 +249,42 @@ deleteCompBtn.addEventListener("click", (e) => {
       break;
     }
   }
-
-  // console.log(optionBtnsArray.length);
 });
 
 //* function for finding index by name
 let indexByName = (array, value) => {
   return array.map((object) => object.name).indexOf(value);
 };
-//* function for finding the name of a comparison object
+
+//* function for finding the name of a comparison object  (not used atm)
 let namesOfComparison = (array) => array.map((object) => object.name);
+
 //* function for deleting an element from an array
 const deleteArrayElement = (array, index) => array.splice(index, 1);
+
+//* function for creating list of options
+const createList = (arrayOfObjects) => {
+  arrayOfObjects.forEach((comparison, index) => {
+    let compOptions = document.createElement("option");
+    compOptions.innerText = comparison.name;
+    compOptions.setAttribute("id", index);
+    compOptions.setAttribute("value", comparison.name);
+    compOptions.setAttribute("favourite", comparison.favourite);
+    console.log(comparison);
+    compSelection.append(compOptions);
+  });
+};
+
+//* delete function with slice, does not mutate (not used atm)
 // const deleteArrayElement = (array, index) => [
 //   ...array.slice(0, index),
 //   ...array.slice(index + 1),
 // ];
 
-//* function for deleting an element from an array using filter
+//* function for deleting an element from an array using filter (not used atm)
 //const removeObj = (array, index) => array.filter(object => object.index !== index);
-//* dblclick event attempt to make a fav
-// selectBtn.addEventListener("dblclick", (e) => {
-//   e.preventDefault();
-//   let optionBtn = document.querySelector(".comp-history option");
-//   let makeFav = prompt("Would you like to mark this as favourite?", "yes");
-//   if (makeFav === "yes") {
-//     optionBtn.classList.add("fav");
-//   }
-//   // optionBtn.classList.add("fav");
-// });
 
-//* possible function for creating options
-// const createList = () => {
-//   comparedCharList.forEach((comparison) => {
-//     let compOptions = document.createElement("option");
-//     compOptions.innerText = comparison.name;
-//     console.log(comparison);
-//     compSelection.append(compOptions);
-//   });
-// };
-
-// createList();
-
-//* for showing the keys stored in localStorage
+//* for showing the keys stored in localStorage (not used atm)
 // const storageItems = { ...localStorage };
 // console.log(storageItems);
 // const keys = Object.keys(localStorage);
@@ -384,3 +294,13 @@ const deleteArrayElement = (array, index) => array.splice(index, 1);
 //     console.log(localStorage.getItem(keys[i]));
 //   }
 // }
+//* dblclick event attempt to make a fav (not used atm)
+// selectBtn.addEventListener("dblclick", (e) => {
+//   e.preventDefault();
+//   let optionBtn = document.querySelector(".comp-history option");
+//   let makeFav = prompt("Would you like to mark this as favourite?", "yes");
+//   if (makeFav === "yes") {
+//     optionBtn.classList.add("fav");
+//   }
+//   // optionBtn.classList.add("fav");
+// });
