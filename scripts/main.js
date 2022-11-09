@@ -18,8 +18,10 @@ let compContainer = document.querySelector(".comparison-list-container");
 let compInputContainer = document.querySelector(".comparison-input-container");
 let compOption = document.createElement("option");
 let compSaveBtn = document.querySelector(".saveBtn");
+let deleteCompBtn = document.querySelector(".delete-comp");
 let compSelection = document.querySelector("#comp-history");
 let markFavBtn = document.querySelector(".make-fav");
+let favClass = "fav";
 let favouriteText = " - (Favourite)";
 let compHistoryName = [];
 let comparedCharacters = {};
@@ -114,7 +116,7 @@ function createCharacter(char1, char2, place) {
     });
   }
 }
-
+//* Get info button eventlistener
 infoBtn.addEventListener("click", async () => {
   let heroOneChoice = firstCharSelect.value;
   let heroTwoChoice = secondCharSelect.value;
@@ -169,6 +171,10 @@ console.log(compSaveBtn, compSelection);
 //*eventlistener for save button
 compSaveBtn.addEventListener("click", (e) => {
   e.preventDefault();
+  if (firstCharSelect.value === "empty" || secondCharSelect.value === "empty") {
+    alert("You need to pick your two characters for comparison");
+    return;
+  }
   // let comparisonName = document.querySelector(".comp-name").value;
   let editName = prompt(
     "Edit the name of your choice!"
@@ -181,7 +187,7 @@ compSaveBtn.addEventListener("click", (e) => {
   let compChars = createComparedChars(editName);
   comparedCharList.push(compChars);
   //*TODO think about cleanup.
-  console.log(comparedCharList, comparedCharList.name);
+  console.log(comparedCharList);
   // document.querySelector(".comp-name").value = "";
   compSelection.innerHTML = "";
 
@@ -214,44 +220,137 @@ selectBtn.addEventListener("click", (e) => {
   // let optionBtn = document.querySelector(".comp-history option");
   console.log(selectBtn.value);
   // console.log(optionBtn);
-  let index = comparedCharList
-    .map((object) => object.name)
-    .indexOf(selectBtn.value);
+  // let index = comparedCharList
+  //   .map((object) => object.name)
+  //   .indexOf(selectBtn.value);
+  let index = indexByName(comparedCharList, selectBtn.value);
   console.log(index);
-  if (selectBtn.value) {
+  // console.log(indexByName(comparedCharList, selectBtn.value));
+  if (selectBtn.value !== "empty") {
     firstCharSelect.value = comparedCharList[index].characterNames[0];
     secondCharSelect.value = comparedCharList[index].characterNames[1];
     infoBtn.click();
+  } else {
+    return false;
   }
 });
 
 markFavBtn.addEventListener("click", (e) => {
   e.preventDefault();
-  let optionBtns = document.querySelectorAll(".comp-history option");
-  let optionBtnsArray = [...optionBtns];
+  let optionBtns = [...document.querySelectorAll(".comp-history option")];
+  // let optionBtnsArray = [...optionBtns];
   // let selectedOption = optionBtnsArray.map(
   //   (option) => (option.selected = true)
   // );
-  optionBtnsArray.forEach((option) => {
-    if (option.selected === true) {
-      console.log(option);
-      option.innerText += favouriteText;
-      option.setAttribute("favourite", true);
-      // markFavBtn.disabled = true;
-      console.log(option.getAttribute("favourite"));
-    } else {
-      option.innerText = option.value;
-      option.setAttribute("favourite", false);
-      // markFavBtn.disabled = false;
+  // optionBtns.forEach((option) => {
+  //   if (option.value === "empty") {
+  //     return false;
+  //   } else if (option.selected === true) {
+  //     console.log(option);
+  //     option.innerText += favouriteText;
+  //     option.setAttribute("favourite", true);
+  //     // markFavBtn.disabled = true;
+  //     console.log(option.getAttribute("favourite"));
+  //   } else {
+  //     option.innerText = option.value;
+  //     option.setAttribute("favourite", false);
+  //     // markFavBtn.disabled = false;
+  //   }
+  // });
+
+  for (let optiontag of optionBtns) {
+    let indexOfUpdate = indexByName(comparedCharList, optiontag.value);
+    if (optiontag.value === "empty") {
+      break;
     }
-  });
+    if (
+      optiontag.selected === true &&
+      optiontag.getAttribute("favourite") === "false"
+    ) {
+      console.log(indexOfUpdate);
+      // console.log(favourite);
+      console.log(comparedCharList);
+      comparedCharList[indexOfUpdate].favourite = true;
+      optiontag.innerText += favouriteText;
+      optiontag.classList.add(favClass);
+      optiontag.setAttribute("favourite", true);
+
+      // console.log(favourite);
+    } else {
+      comparedCharList[indexOfUpdate].favourite = false;
+      optiontag.innerText = optiontag.value;
+      optiontag.setAttribute("favourite", false);
+      optiontag.classList.remove(favClass);
+      console.log(comparedCharList);
+    }
+  }
 
   console.log(optionBtns);
-  console.log(optionBtnsArray);
+  // console.log(optionBtnsArray);
   // console.log(selectedOption);
   console.log(selectBtn.value);
 });
+//* eventlistener for delete comparison button
+deleteCompBtn.addEventListener("click", (e) => {
+  e.preventDefault();
+  let optionBtns = [...document.querySelectorAll(".comp-history option")];
+  // let optionBtnsArray = [...optionBtns];
+  // console.log(optionBtnsArray.length);
+  // let nameOfComparison = comparedCharList.map((object) => object.name);
+  // console.log(nameOfComparison, comparedCharList, compHistoryName);
+  let isDeleted = false;
+  // optionBtns.forEach((option, index) => {
+  //   if (isDeleted) return;
+  //   if (option.selected === true && option.value !== "empty") {
+  //     // deleteArrayElement(optionBtnsArray, index);
+  //     let indexOfDelete = indexByName(comparedCharList, option.value);
+  //     // console.log(indexOfDelete);
+  //     // console.log(comparedCharList);
+  //     deleteArrayElement(comparedCharList, indexOfDelete);
+  //     // console.log(comparedCharList);
+  //     option.remove();
+  //     isDeleted = true;
+  //     // console.log(selectBtn.value);
+  //     if (comparedCharList.length === 0) {
+  //       selectBtn.innerHTML = `<option class="disabled" value="empty" selected disabled>
+  //       Select a comparison
+  //     </option>`;
+  //     }
+  //   }
+  // });
 
+  for (let optiontag of optionBtns) {
+    if (optiontag.selected) {
+      let indexOfDelete = indexByName(comparedCharList, optiontag.value);
+      deleteArrayElement(comparedCharList, indexOfDelete);
+      optiontag.remove();
+      if (comparedCharList.length === 0) {
+        selectBtn.innerHTML = `<option class="disabled" value="empty" selected disabled hidden>
+        Select a comparison
+      </option>`;
+      }
+      break;
+    }
+  }
+
+  // console.log(optionBtnsArray.length);
+});
+
+//* function for finding index by name
+let indexByName = (array, value) => {
+  return array.map((object) => object.name).indexOf(value);
+};
+//* function for finding the name of a comparison object
+let namesOfComparison = (array) => array.map((object) => object.name);
+//* function for deleting an element from an array
+const deleteArrayElement = (array, index) => array.splice(index, 1);
+// const deleteArrayElement = (array, index) => [
+//   ...array.slice(0, index),
+//   ...array.slice(index + 1),
+// ];
+
+//* function for deleting an element from an array using filter
+//const removeObj = (array, index) => array.filter(object => object.index !== index);
 //* dblclick event attempt to make a fav
 // selectBtn.addEventListener("dblclick", (e) => {
 //   e.preventDefault();
