@@ -66,29 +66,30 @@ body {
       .char-name {
         @include cinzel-font;
       }
-      // .fav {
-      //   background: gold;
-      // }
-      //*trying to style .fav
-      .comparison-list {
-        .comparison-input-container {
-          .saveBtn {
-            padding: 5px;
-            font-size: 1rem;
-            @include btn-style;
-            &:hover {
-              background-color: gold;
-            }
+
+      .comp-list-container {
+        select {
+          padding: 10px;
+          font-size: 0.8rem;
+          border-radius: 10px;
+          border: none;
+        }
+        select .fav {
+          background-color: gold;
+        }
+        .delete-comp,
+        .make-fav {
+          padding: 10px;
+          font-size: 0.8rem;
+          @include btn-style;
+          cursor: pointer;
+          &.delete-comp:hover {
+            background-color: hsl(13, 96%, 55%);
+          }
+          &.make-fav:hover {
+            background-color: hsl(120, 90%, 45%);
           }
         }
-        // .comp-list-container {
-        //   .comp-history {
-        //     option.fav {
-        //       font-size: x-large;
-        //       font-weight: bold;
-        //     }
-        //   }
-        // }
       }
 
       .heading.center {
@@ -125,11 +126,14 @@ body {
         justify-content: center;
         padding: 10px;
         margin-bottom: 10px;
+        column-gap: 1em;
 
-        .info-btn {
+        .info-btn,
+        .saveBtn {
           padding: 10px;
           font-size: 1.5rem;
           @include btn-style;
+          cursor: pointer;
           &:hover {
             background-color: gold;
           }

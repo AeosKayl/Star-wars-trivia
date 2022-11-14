@@ -90,18 +90,37 @@ body main .character-comparison .char-name {
   font-family: 'Cinzel', serif;
 }
 
-body main .character-comparison .comparison-list .comparison-input-container .saveBtn {
-  padding: 5px;
-  font-size: 1rem;
+body main .character-comparison .comp-list-container select {
+  padding: 10px;
+  font-size: 0.8rem;
+  border-radius: 10px;
+  border: none;
+}
+
+body main .character-comparison .comp-list-container select .fav {
+  background-color: gold;
+}
+
+body main .character-comparison .comp-list-container .delete-comp,
+body main .character-comparison .comp-list-container .make-fav {
+  padding: 10px;
+  font-size: 0.8rem;
   border-radius: 10px;
   border: none;
   background-color: #f0f0ee;
   -webkit-box-shadow: #3f3e3e 5px 5px 5px;
           box-shadow: #3f3e3e 5px 5px 5px;
+  cursor: pointer;
 }
 
-body main .character-comparison .comparison-list .comparison-input-container .saveBtn:hover {
-  background-color: gold;
+body main .character-comparison .comp-list-container .delete-comp.delete-comp:hover,
+body main .character-comparison .comp-list-container .make-fav.delete-comp:hover {
+  background-color: #fa4e1e;
+}
+
+body main .character-comparison .comp-list-container .delete-comp.make-fav:hover,
+body main .character-comparison .comp-list-container .make-fav.make-fav:hover {
+  background-color: #0bda0b;
 }
 
 body main .character-comparison .heading.center {
@@ -159,9 +178,12 @@ body main .character-comparison .btn-wrap {
           justify-content: center;
   padding: 10px;
   margin-bottom: 10px;
+  -webkit-column-gap: 1em;
+          column-gap: 1em;
 }
 
-body main .character-comparison .btn-wrap .info-btn {
+body main .character-comparison .btn-wrap .info-btn,
+body main .character-comparison .btn-wrap .saveBtn {
   padding: 10px;
   font-size: 1.5rem;
   border-radius: 10px;
@@ -169,9 +191,11 @@ body main .character-comparison .btn-wrap .info-btn {
   background-color: #f0f0ee;
   -webkit-box-shadow: #3f3e3e 5px 5px 5px;
           box-shadow: #3f3e3e 5px 5px 5px;
+  cursor: pointer;
 }
 
-body main .character-comparison .btn-wrap .info-btn:hover {
+body main .character-comparison .btn-wrap .info-btn:hover,
+body main .character-comparison .btn-wrap .saveBtn:hover {
   background-color: gold;
 }
 
