@@ -1,93 +1,111 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Cinzel&family=Jost:wght@300;600&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="styles/style.css">
-  <title>Document</title>
-</head>
-<body>
-  <header>
-    <div class="container">
-      <div class="logo-wrapper">
-        <img src="images/SWlogo.png" alt="Star Wars logo">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Cinzel&family=Jost:wght@300;600&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="styles/style.css" />
+    <title>Document</title>
+  </head>
+  <body>
+    <header>
+      <div class="container">
+        <div class="logo-wrapper">
+          <img src="images/SWlogo.png" alt="Star Wars logo" />
+        </div>
       </div>
-    </div>
-    <h1 class="heading"><span>Trivia</span></h1>
-  </header>
-  <main>
-    <section class="character-comparison">
-      <h2 class="heading center">Choose your characters</h2>
-      <div class="selections">
-        <section class="character-choice">
-          <select name="first-char" id="first-char">
-            <option value="empty" selected disabled hidden>Select a character</option>
-            <option value="Luke Skywalker">Luke Skywalker</option>
-            <option value="Chewbacca">Chewbacca</option>
-            <option value="Boba Fett">Bobba Fett</option>
-            <option value="Darth Vader">Darth Vader</option>
-            <option value="Palpatine">Palpatine</option>
-            <option value="Obi Wan Kenobi">Obi Wan Kenobi</option>
-            <option value="Yoda">Yoda</option>
-            <option value="Leia Organa">Leia Organa</option>
-          </select>
-        </section>
-        <section class="character-choice">
-          <select name="second-char" id="second-char">
-            <option value="empty" selected disabled hidden>Select a character</option>
-            <option value="Luke Skywalker">Luke Skywalker</option>
-            <option value="Chewbacca">Chewbacca</option>
-            <option value="Boba Fett">Bobba Fett</option>
-            <option value="Darth Vader">Darth Vader</option>
-            <option value="Palpatine">Palpatine</option>
-            <option value="Obi Wan Kenobi">Obi Wan Kenobi</option>
-            <option value="Yoda">Yoda</option>
-            <option value="Leia Organa">Leia Organa</option>
-          </select>
-        </section>
-      </div>
-      <div class="btn-wrap">
-        <button class="btn info-btn">Get information</button>
-      </div>
-      <section class="text-msg"></section>
-      <section class="characters-info">
-        <div class="char-1-wrapper">
-          <section class="char-image">
-            <img src="images/Unknown.jpg" alt="image of chosen character">
+      <h1 class="heading"><span>Trivia</span></h1>
+    </header>
+    <main>
+      <section class="character-comparison">
+        <h2 class="heading center">Choose your characters</h2>
+          <div class="comp-list-container">
+            <select class="comp-history" name="comp-history" id="comp-history">
+              <option class="disabled" value="empty" selected disabled hidden>
+                Select a comparison
+              </option>
+            </select>
+            <button class="btn make-fav">Make favourite</button>
+            <button class="btn delete-comp">Delete comparison</button>
+          </div>
+        </div>
+        <div class="selections">
+          <section class="character-choice">
+            <select name="first-char" id="first-char">
+              <option value="empty" selected disabled hidden>
+                Select a character
+              </option>
+              <option value="Luke Skywalker" id="luke1">Luke Skywalker</option>
+              <option value="Chewbacca" id="chew1">Chewbacca</option>
+              <option value="Boba Fett" id="boba1">Bobba Fett</option>
+              <option value="Darth Vader" id="darth1">Darth Vader</option>
+              <option value="Palpatine" id="palp1">Palpatine</option>
+              <option value="Obi Wan Kenobi" id="obi1">Obi Wan Kenobi</option>
+              <option value="Yoda" id="yoda1">Yoda</option>
+              <option value="Leia Organa" id="leia1">Leia Organa</option>
+            </select>
           </section>
-          <!-- <section class="char-summary" style="display:none"> -->
-          <section class="char-summary" style="display:none">
-            <h3 class="char-name"></h3>
-            <div class="char-prop-btns">
-              <button class="btn gender">Gender</button>
-              <button class="btn hair">Hair Color</button>
-              <button class="btn height">Height</button>
-              <button class="btn weight">Weight</button>
-            </div>
+          <section class="character-choice">
+            <select name="second-char" id="second-char">
+              <option value="empty" selected disabled hidden>
+                Select a character
+              </option>
+              <option value="Luke Skywalker" id="luke2">Luke Skywalker</option>
+              <option value="Chewbacca" id="chew2">Chewbacca</option>
+              <option value="Boba Fett" id="boba2">Bobba Fett</option>
+              <option value="Darth Vader" id="darth2">Darth Vader</option>
+              <option value="Palpatine" id="palp2">Palpatine</option>
+              <option value="Obi Wan Kenobi" id="obi2">Obi Wan Kenobi</option>
+              <option value="Yoda" id="yoda2">Yoda</option>
+              <option value="Leia Organa" id="leia2">Leia Organa</option>
+            </select>
           </section>
         </div>
-        <div class="char-2-wrapper">
-          <section class="char-image">
-            <img src="images/Unknown.jpg" alt="image of chosen character">
-          </section>
-          <!-- <section class="char-summary" style="display:none"> -->
-          <section class="char-summary" style="display:none"> 
-            <h3 class="char-name"></h3>
-            <div class="char-prop-btns">
-              <button class="btn gender">Gender</button>
-              <button class="btn hair">Hair Color</button>
-              <button class="btn height">Height</button>
-              <button class="btn weight">Weight</button>
-            </div>
-          </section>
+        <div class="btn-wrap">
+          <button class="btn info-btn">Get information</button>
+          <button class="btn saveBtn">save your choice</button>
         </div>
+        <section class="text-msg"></section>
+        <section class="characters-info">
+          <div class="char-1-wrapper">
+            <section class="char-image">
+              <img src="images/Unknown.jpg" alt="image of chosen character" />
+            </section>
+            <!-- <section class="char-summary" style="display:none"> -->
+            <section class="char-summary" style="display: none">
+              <h3 class="char-name"></h3>
+              <div class="char-prop-btns">
+                <button class="btn gender">Gender</button>
+                <button class="btn hair">Hair Color</button>
+                <button class="btn height">Height</button>
+                <button class="btn weight">Weight</button>
+              </div>
+            </section>
+          </div>
+          <div class="char-2-wrapper">
+            <section class="char-image">
+              <img src="images/Unknown.jpg" alt="image of chosen character" />
+            </section>
+            <!-- <section class="char-summary" style="display:none"> -->
+            <section class="char-summary" style="display: none">
+              <h3 class="char-name"></h3>
+              <div class="char-prop-btns">
+                <button class="btn gender">Gender</button>
+                <button class="btn hair">Hair Color</button>
+                <button class="btn height">Height</button>
+                <button class="btn weight">Weight</button>
+              </div>
+            </section>
+          </div>
+        </section>
       </section>
-    </section>
-  </main>
-  <script type="module" src="scripts/main.js"></script>
-</body>
+    </main>
+    <script type="module" src="scripts/main.js"></script>
+  </body>
 </html>
